@@ -1,0 +1,39 @@
+.navbar-custom {
+    background-color: #1a1a1a;
+    padding: 1rem 2rem;
+  }
+  
+  .navbar-custom .nav-link,
+  .navbar-custom .navbar-brand,
+  .navbar-custom span {
+    color: white !important;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-custom .nav-link:hover,
+  .navbar-custom .navbar-brand:hover {
+    color: orange !important;
+    text-decoration: none;
+  }
+  
+  .navbar-custom .btn-outline-primary {
+    border-color: orange;
+    color: orange;
+  }
+  
+  .navbar-custom .btn-outline-primary:hover {
+    background-color: orange;
+    color: white;
+  }
+  
+  .navbar-custom .btn-outline-danger {
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+  }
+  
+  .navbar-custom .btn-outline-danger:hover {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  

@@ -1,0 +1,61 @@
+.custom-navbar {
+    background-color: #252524;
+    padding: 10px 20px;
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.5rem;
+}
+
+.custom-navbar .navbar-nav {
+    margin-left: auto;
+}
+
+.custom-navbar .nav-link {
+    color: white;
+    margin: 0 15px;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link:focus {
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+}
+
+.custom-title {
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.custom-title:hover {
+    color: #FFD700;
+}
+
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03) translateY(-3px);
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.section-title {
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+}
+
+.buscador {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.offcanvas-body img {
+    border: 1px solid #ccc;
+}

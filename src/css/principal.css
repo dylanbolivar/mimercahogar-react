@@ -1,0 +1,153 @@
+body {
+    position: relative;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.custom-navbar {
+    background-color: #252524;
+}
+
+.custom-navbar .nav-link {
+    color: white;
+}
+
+.custom-navbar .nav-link:hover {
+    color: #FFD700;
+}
+
+.custom-title {
+    color: #ffffff;
+}
+
+.custom-title:hover {
+    color: #FFD700;
+}
+
+.product-card {
+    margin: 30px;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.aside {
+    background-color: #f8f9fa;
+    padding: 30px;
+    color: #252524;
+    border-radius: 8px;
+    width: 300px;
+    float: right; /* O left si lo querés a la izquierda */
+    margin: 40px 20px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    font-size: 0.95rem;
+    position: absolute;
+    top: 10%;
+}
+
+#logo {
+    width: 200px;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+
+
+
+
+#frase {
+    font-style: oblique;
+}
+
+.footer {
+    background-color: #252524;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .footer p,
+  .footer a {
+    color: #fff;
+    margin: 0.5rem 0;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .footer p:hover,
+  .footer a:hover {
+    color: orange; /* efecto naranja al pasar el mouse */
+    cursor: pointer;
+  }
+  
+
+.necesitas-algo-mas {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.dropbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content p {
+    margin: 0;
+    color: #333;
+}
+
+
+.dropbtn {
+    background-color:#252524; 
+    color: #fff; /* texto blanco */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+    margin-bottom: 10px;
+  }
+  
+  .dropbtn:hover {
+    color: orange;
+  }
+  
+  .dropdown-content {
+
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
