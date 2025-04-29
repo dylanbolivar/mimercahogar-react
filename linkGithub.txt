@@ -1,0 +1,3 @@
+este es el enlace a github profe, no recomiendo que lo compile con Npm install debido a que ya tiene el node-modules ok
+
+https://github.com/dylanbolivar/mimercahogar-react
