@@ -1,0 +1,45 @@
+ENDPOINTS DEL PROYECTO - FASTAPI
+
+1. POST /register
+   - Descripción: Registra un nuevo usuario.
+   - Body (JSON):
+     {
+       "usuario": "nombre_de_usuario",
+       "contrasena": "1234"
+     }
+   - Respuesta:
+     {
+       "mensaje": "Registro exitoso"
+     }
+
+2. POST /login
+   - Descripción: Inicia sesión si las credenciales son correctas.
+   - Body (JSON):
+     {
+       "usuario": "nombre_de_usuario",
+       "contrasena": "1234"
+     }
+   - Respuesta:
+     {
+       "mensaje": "Login exitoso"
+     }
+
+3. POST /historial
+   - Descripción: Guarda la lista de productos comprados por un usuario.
+   - Body (JSON):
+     {
+       "usuario": "nombre_de_usuario",
+       "productos": ["Arroz", "Pan", "Leche"]
+     }
+   - Respuesta:
+     {
+       "mensaje": "Compra guardada"
+     }
+
+4. GET /historial/{usuario}
+   - Descripción: Obtiene el historial de compras de un usuario.
+   - Ejemplo: /historial/juan123
+   - Respuesta:
+     {
+       "compras": [["Arroz", "Pan", "Leche"], ["Jugo", "Frutas"]]
+     }

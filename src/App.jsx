@@ -1,9 +1,13 @@
+import Historial from './pages/Historial';
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Catalogo from './pages/Catalogo';
 import Login from './pages/Login';
+import Register from './pages/Register';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [carrito, setCarrito] = useState(() => JSON.parse(localStorage.getItem('carrito')) || []);
@@ -15,6 +19,12 @@ function App() {
   }, [carrito]);
 
   const handleLogin = (nombreUsuario) => {
+    setUsuario(nombreUsuario);
+    localStorage.setItem('usuario', nombreUsuario);
+    navigate('/');
+  };
+
+  const handleRegister = (nombreUsuario) => {
     setUsuario(nombreUsuario);
     localStorage.setItem('usuario', nombreUsuario);
     navigate('/');
@@ -33,6 +43,8 @@ function App() {
         <Route path="/" element={<Home carrito={carrito} />} />
         <Route path="/catalogo" element={<Catalogo carrito={carrito} setCarrito={setCarrito} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/register" element={<Register onRegister={handleRegister} />} />
+        <Route path="/historial" element={<Historial />} />
       </Routes>
     </>
   );

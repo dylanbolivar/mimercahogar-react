@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../css/navbar.css'; 
+import '../css/Navbar.css'; 
 
 function Navbar({ contador, usuario }) {
   const navigate = useNavigate();
@@ -20,6 +20,11 @@ function Navbar({ contador, usuario }) {
             <li className="nav-item">
               <Link className="nav-link" to="/catalogo">Catálogo</Link>
             </li>
+            <li>
+              <a href="/historial" className="nav-link">
+              📜 Historial de compras
+              </a>
+            </li>
           </ul>
 
           <div className="d-flex align-items-center gap-3">
@@ -33,9 +38,14 @@ function Navbar({ contador, usuario }) {
                 </button>
               </>
             ) : (
-              <Link to="/login" className="btn btn-outline-primary btn-sm">
-                Iniciar sesión
-              </Link>
+              <>
+                <Link to="/login" className="btn btn-outline-primary btn-sm">
+                  Iniciar sesión
+                </Link>
+                <Link to="/register" className="btn btn-outline-success btn-sm">
+                  Registrarse
+                </Link>
+              </>
             )}
           </div>
         </div>

@@ -149,7 +149,30 @@ function Catalogo() {
           </div>
           <div className="offcanvas-footer border-top p-3">
             <h5>Total: ${total.toLocaleString()}</h5>
-            <button className="btn btn-success w-100">Finalizar Compra</button>
+            <button
+              className="btn btn-success w-100"
+              onClick={() => {
+                if (carrito.length === 0) {
+                  alert('Tu carrito está vacío.');
+                  return;
+                }
+
+                const usuario = localStorage.getItem('usuario'); // obtiene el usuario logueado
+                const historial = JSON.parse(localStorage.getItem('historialCompras')) || [];
+
+                historial.push({ usuario, items: carrito }); // ahora guarda usuario + productos
+
+                localStorage.setItem('historialCompras', JSON.stringify(historial));
+
+                localStorage.setItem('carrito', JSON.stringify([]));
+                setCarrito([]);
+                alert('Compra finalizada. Gracias por tu compra.');
+                setMostrarCarrito(false); // Cierra el carrito
+              }}
+            >
+              Finalizar Compra
+            </button>
+
           </div>
         </div>
       )}

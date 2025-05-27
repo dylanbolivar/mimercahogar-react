@@ -12,7 +12,7 @@ import promo1 from "../assets/img/promocion11.png";
 import promo2 from "../assets/img/promocion22.png";
 import promo3 from "../assets/img/promocion33.png";
 import promo4 from "../assets/img/promocion3.png";
-import logo from "../assets/img/logo mmhm.png";
+import logo from "../assets/img/logo-mmhm.png";
 import arroz from "../assets/img/arroz.png";
 import carne from "../assets/img/carne.png";
 import leche from "../assets/img/leche.png";
@@ -108,9 +108,6 @@ function Home({ carrito, setCarrito }) {
                   <div className="card-body">
                     <h5 className="card-title">{prod.nombre}</h5>
                     <p className="card-text">${prod.precio.toLocaleString()}</p>
-                    <button className="btn btn-primary" onClick={() => agregarAlCarrito(prod)}>
-                      Agregar al Carrito
-                    </button>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,48 @@
+.register-container {
+  display: flex;
+  height: 100vh;
+}
+
+.register-left {
+  flex: 1;
+  background-image: url('../assets/img/verduraslogin.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.register-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2dfdf;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 30px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.boton-dorado {
+  background-color: #FFD700 !important;
+  color: black !important;
+  border: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.boton-dorado:hover {
+  background-color: #e6c200 !important;
+}

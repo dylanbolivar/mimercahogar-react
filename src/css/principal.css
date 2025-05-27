@@ -34,7 +34,7 @@ body {
 }
 
 .aside {
-    background-color: #f8f9fa;
+    background-color: rgba(255, 166, 0, 0.74);
     padding: 30px;
     color: #252524;
     border-radius: 8px;
@@ -150,4 +150,3 @@ body {
     border-radius: 5px;
     margin-bottom: 15px;
   }
-  
