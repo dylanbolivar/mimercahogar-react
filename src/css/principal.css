@@ -13,7 +13,7 @@ body {
 }
 
 .custom-navbar .nav-link:hover {
-    color: #FFD700;
+    color: #FFD700; /* Color naranja/dorado para el hover */
 }
 
 .custom-title {
@@ -21,7 +21,7 @@ body {
 }
 
 .custom-title:hover {
-    color: #FFD700;
+    color: #FFD700; /* Color naranja/dorado para el hover del título */
 }
 
 .product-card {
@@ -33,18 +33,20 @@ body {
     transform: scale(1.05);
 }
 
+/* CLASE ASIDE CORREGIDA - ELIMINA 'position: absolute' y 'float: right' */
 .aside {
-    background-color: rgba(255, 166, 0, 0.74);
+    background-color: rgba(255, 166, 0, 0.74); /* Tu color naranja */
     padding: 30px;
     color: #252524;
     border-radius: 8px;
-    width: 300px;
-    float: right; /* O left si lo querés a la izquierda */
-    margin: 40px 20px;
+    /* width: 300px;  - Ya no es necesario si usas col-md-X */
+    /* float: right; - ¡ELIMINA ESTO! */
+    margin-top: 40px; /* Mantén el margen superior si lo deseas */
+    margin-bottom: 40px; /* Mantén el margen inferior si lo deseas */
     box-shadow: 0 0 12px rgba(0,0,0,0.1);
     font-size: 0.95rem;
-    position: absolute;
-    top: 10%;
+    /* position: absolute; - ¡ELIMINA ESTO! */
+    /* top: 10%; - ¡ELIMINA ESTO! */
 }
 
 #logo {
@@ -52,10 +54,6 @@ body {
     max-width: 100%;
     border-radius: 8px;
 }
-
-
-
-
 
 #frase {
     font-style: oblique;
@@ -65,22 +63,21 @@ body {
     background-color: #252524;
     color: #fff;
     text-align: center;
-  }
-  
-  .footer p,
-  .footer a {
+}
+
+.footer p,
+.footer a {
     color: #fff;
     margin: 0.5rem 0;
     transition: color 0.3s ease;
     text-decoration: none;
-  }
-  
-  .footer p:hover,
-  .footer a:hover {
+}
+
+.footer p:hover,
+.footer a:hover {
     color: orange; /* efecto naranja al pasar el mouse */
     cursor: pointer;
-  }
-  
+}
 
 .necesitas-algo-mas {
     background-color: #f8f9fa;
@@ -98,24 +95,32 @@ body {
 }
 
 .dropbtn {
-    background-color: #007bff;
-    color: white;
+    background-color:#252524; 
+    color: #fff; /* texto blanco */
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Agregado para que no se vea tan cuadrado */
     cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.dropbtn:hover {
+    color: orange;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Fondo claro para el contenido del dropdown */
     min-width: 200px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     padding: 10px;
     border-radius: 5px;
+    left: 50%; /* Centra el dropdown */
+    transform: translateX(-50%); /* Centra el dropdown */
 }
 
 .dropdown:hover .dropdown-content {
@@ -124,29 +129,5 @@ body {
 
 .dropdown-content p {
     margin: 0;
-    color: #333;
+    color: #333; /* Color oscuro para el texto del dropdown */
 }
-
-
-.dropbtn {
-    background-color:#252524; 
-    color: #fff; /* texto blanco */
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s, background-color 0.3s;
-    margin-bottom: 10px;
-  }
-  
-  .dropbtn:hover {
-    color: orange;
-  }
-  
-  .dropdown-content {
-
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-  }

@@ -1,0 +1,151 @@
+/* src/css/LoginRegister.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* O la fuente que estés usando */
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.login-register-container {
+    display: flex;
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+.image-sidebar {
+    flex: 1; /* Ocupa el espacio restante */
+    background-size: cover; /* La imagen cubre todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* La URL de la imagen se define en el componente React */
+}
+
+.form-container {
+    flex: 1; /* También ocupa la mitad, o puedes ajustar el ancho fijo si prefieres */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semitransparente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(5px); /* Para compatibilidad con Safari */
+    position: relative; /* Para posicionar el cuadro de login/registro */
+    width: 100%; /* Asegura que ocupe el ancho */
+}
+
+.login-register-box {
+    background-color: rgba(255, 255, 255, 0.15); /* Cuadro semitransparente */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde semitransparente */
+    max-width: 400px; /* Ancho máximo del formulario */
+    width: 90%; /* Ajuste para pantallas más pequeñas */
+    text-align: center;
+    box-sizing: border-box; /* Incluir padding y borde en el ancho/alto */
+}
+
+.login-register-box h2 {
+    margin-bottom: 25px;
+    color: #333; /* Color de texto oscuro */
+    font-size: 2em;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: calc(100% - 20px); /* Resta el padding */
+    padding: 12px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo del input un poco más sólido */
+    color: #333;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #ff9900; /* Naranja en el foco */
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.3);
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff8c00; /* Naranja fuerte para el botón principal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.form-button:hover {
+    background-color: #e67e00; /* Naranja un poco más oscuro al pasar el mouse */
+}
+
+.toggle-link {
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.toggle-link a {
+    color: #ff8c00; /* Naranja para el enlace "ya tienes una cuenta?" */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.toggle-link a:hover {
+    color: #e67e00;
+}
+
+.error-message {
+    color: #ff4d4d;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Estilo para el logo */
+.logo-container {
+    margin-bottom: 30px;
+}
+
+.logo-container img {
+    max-width: 150px; /* Ajusta el tamaño del logo */
+    height: auto;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .login-register-container {
+        flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    }
+
+    .image-sidebar {
+        height: 200px; /* Altura fija para la imagen en móvil */
+        width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .login-register-box {
+        padding: 30px;
+    }
+}

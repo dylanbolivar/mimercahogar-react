@@ -1,67 +1,88 @@
+// src/pages/Login.jsx
 import React, { useState } from 'react';
-import '../css/Login.css';
+import { Link, useNavigate } from 'react-router-dom';
+import '../css/LoginRegister.css';
+import loginImage from '../assets/img/verduraslogin.jpg';
+import logo from '../assets/img/logo-mmhm.png'; 
+import { supabase } from '../supabaseClient'; 
 
-function Login({ onLogin }) {
-  const [usuario, setUsuario] = useState('');
-  const [contraseña, setContraseña] = useState('');
+function Login() {
+    const [correo, setCorreo] = useState('');
+    const [contrasena, setContrasena] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
-    const usuarioValido = usuariosRegistrados.find(
-    (u) => u.usuario === usuario && u.contrasena === contraseña
-    );
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(''); // Limpia cualquier error anterior
+        setLoading(true); // Activa el estado de carga
 
+        try {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: correo,
+                password: contrasena,
+            });
 
-    if (usuarioValido) {
-      alert('Inicio de sesión exitoso');
-      onLogin(usuario); // ⬅️ Aquí se notifica al App para guardar sesión y redirigir
-    } else {
-      alert('Usuario o contraseña incorrectos');
-    }
-  };
+            if (error) {
+                setError(error.message); // Muestra el mensaje de error de Supabase
+                console.error('Error de inicio de sesión con Supabase:', error.message);
+            } else if (data.user) {
+                // Si el login es exitoso, App.jsx escuchará este cambio
+                // a través de onAuthStateChange y actualizará el estado global.
+                console.log('Inicio de sesión exitoso:', data.user);
+                navigate('/'); // Redirige al Home
+            }
+        } catch (err) {
+            setError('Error de conexión con Supabase. Inténtalo de nuevo más tarde.');
+            console.error('Error de conexión inesperado:', err);
+        } finally {
+            setLoading(false); // Desactiva el estado de carga al finalizar
+        }
+    };
 
-  return (
-    <div className="login-container">
-      <div className="login-left"></div>
-
-      <div className="login-right">
-        <div className="login-box">
-          <h2>Iniciar Sesión</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label>Usuario o Email</label>
-              <input
-                type="text"
-                className="form-control"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
-                required
-              />
+    return (
+        <div className="login-register-container">
+            <div className="image-sidebar" style={{ backgroundImage: `url(${loginImage})` }}></div>
+            <div className="form-container">
+                <div className="login-register-box">
+                    <div className="logo-container">
+                        <img src={logo} alt="Logo MiMercahogar" />
+                    </div>
+                    <h2>Iniciar Sesión</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="input-group">
+                            <label htmlFor="correo">Correo Electrónico:</label>
+                            <input
+                                type="email"
+                                id="correo"
+                                value={correo}
+                                onChange={(e) => setCorreo(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="input-group">
+                            <label htmlFor="contrasena">Contraseña:</label>
+                            <input
+                                type="password"
+                                id="contrasena"
+                                value={contrasena}
+                                onChange={(e) => setContrasena(e.target.value)}
+                                required
+                            />
+                        </div>
+                        {error && <p className="error-message">{error}</p>}
+                        <button type="submit" className="form-button" disabled={loading}>
+                            {loading ? 'Iniciando...' : 'Iniciar Sesión'}
+                        </button>
+                    </form>
+                    <p className="toggle-link">
+                        ¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link>
+                    </p>
+                </div>
             </div>
-
-            <div className="mb-3">
-              <label>Contraseña</label>
-              <input
-                type="password"
-                className="form-control"
-                value={contraseña}
-                onChange={(e) => setContraseña(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="form-check mb-3">
-              <input type="checkbox" className="form-check-input" id="recordarme" />
-              <label className="form-check-label" htmlFor="recordarme">Recordarme</label>
-            </div>
-
-            <button className="btn boton-dorado w-100" type="submit">Entrar</button>
-          </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Login;

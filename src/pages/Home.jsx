@@ -1,170 +1,162 @@
-import React from "react";
-import { Carousel } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/principal.css";
+import React, { useState, useEffect } from 'react';
+import '../App.css';
+import logoMercahogar from '../assets/img/logo-mmhm.png';
+// Importa las imágenes de ofertas/promociones
+import oferta1 from '../assets/img/promocion1.png';
+import oferta2 from '../assets/img/promocion11.png';
+import oferta3 from '../assets/img/promocion2.png';
+import oferta4 from '../assets/img/promocion22.png';
+import oferta5 from '../assets/img/promocion3.png';
 
-// Importa el Navbar reutilizable
-import Navbar from "../components/Navbar";
+import arrozImg from '../assets/img/arroz.png';
+import chuletaImg from '../assets/img/carne.png';
+import lecheImg from '../assets/img/leche.png';
 
-// Imágenes
-import promo1 from "../assets/img/promocion11.png";
-import promo2 from "../assets/img/promocion22.png";
-import promo3 from "../assets/img/promocion33.png";
-import promo4 from "../assets/img/promocion3.png";
-import logo from "../assets/img/logo-mmhm.png";
-import arroz from "../assets/img/arroz.png";
-import carne from "../assets/img/carne.png";
-import leche from "../assets/img/leche.png";
 
-function Home({ carrito, setCarrito }) {
-  const eliminarDelCarrito = (index) => {
-    const nuevoCarrito = [...carrito];
-    nuevoCarrito.splice(index, 1);
-    setCarrito(nuevoCarrito);
-  };
+function Home() {
+    const [openFaq, setOpenFaq] = useState(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    // Array con las imágenes del carrusel
+    const carouselImages = [
+        oferta1,
+        oferta2,
+        oferta3, // ¡Agregadas aquí!
+        oferta4, // ¡Agregadas aquí!
+        oferta5, // ¡Agregadas aquí!
+    ];
 
-  const agregarAlCarrito = (producto) => {
-    setCarrito([...carrito, producto]);
-  };
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prevSlide) =>
+                (prevSlide + 1) % carouselImages.length
+            );
+        }, 5000); // Cambia de imagen cada 5 segundos (5000 ms)
 
-  return (
-    <>
-      {/* Carrusel de imágenes */}
-      <div className="container mt-4">
-        <Carousel>
-          {[promo1, promo2, promo3, promo4].map((img, i) => (
-            <Carousel.Item key={i}>
-              <img
-                src={img}
-                className="d-block w-100"
-                alt={`Promo ${i + 1}`}
-                style={{ maxHeight: "500px", objectFit: "contain" }}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
+        return () => clearInterval(interval);
+    }, [carouselImages.length]); // Dependencia para que el efecto se re-ejecute si cambia la cantidad de imágenes
 
-      {/* Aside - Quiénes somos */}
-      <aside className="aside container mt-5 mb-5 text-center">
-        <img src={logo} alt="Logo MMH" id="logo" className="img-fluid mb-3" />
+    const toggleFaq = (key) => {
+        setOpenFaq(openFaq === key ? null : key);
+    };
 
-        <h3>¿Quiénes somos?</h3>
-        <p id="frase" className="fst-italic">
-          "Realizar tus compras nunca fue tan fácil como antes. ¿Por qué salir cuando puedes tenerlo en cuestión de minutos?"
-        </p>
-        <p><strong>Perfil:</strong> Somos una distribuidora de productos de almacenes reconocidos. Enviamos lo que el cliente seleccione de varios almacenes en un solo envío.</p>
-        <p><strong>Ubicación:</strong> Cll 77B #100b-30</p>
-        <p><strong>Nuestros Proveedores:</strong></p>
-        <ul>
-          <li>Éxito</li>
-          <li>Alkosto</li>
-          <li>D1</li>
-          <li>Ara</li>
-          <li>Oxxo</li>
-        </ul>
-        <h4>Síguenos en nuestras redes sociales</h4>
-        <ul className="list-unstyled d-flex justify-content-center gap-3">
-          <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-          <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-          <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-        </ul>
-      </aside>
-
-      {/* Carrito de Compras */}
-      <div className="container mt-4">
-        <h2>Carrito de Compras</h2>
-        {carrito?.length === 0 ? (
-          <p>No hay productos en el carrito.</p>
-        ) : (
-          <ul className="list-group">
-            {carrito.map((item, index) => (
-              <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                {item.nombre}
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => eliminarDelCarrito(index)}
-                >
-                  Eliminar
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {/* Main - Productos Destacados */}
-      <main>
-        <div className="container mt-5">
-          <h2 className="text-center">Productos Destacados</h2>
-          <div className="row">
-            {[{ img: arroz, nombre: "Arroz FLOR HUILA (5000 gr)", precio: 22500 },
-              { img: carne, nombre: "Chuleta de Cerdo Económica", precio: 8900 },
-              { img: leche, nombre: "Leche EXITO MARCA PROPIA Entera (5400 ml)", precio: 16620 }].map((prod, i) => (
-              <div className="col-md-4" key={i}>
-                <div className="card product-card">
-                  <img src={prod.img} className="card-img-top" alt={prod.nombre} />
-                  <div className="card-body">
-                    <h5 className="card-title">{prod.nombre}</h5>
-                    <p className="card-text">${prod.precio.toLocaleString()}</p>
-                  </div>
+    return (
+        <div className="home-container">
+            {/* Aside de información de la empresa */}
+            <aside className="aside-info">
+                <div className="aside-logo-container">
+                    <img src={logoMercahogar} alt="Logo MiMercahogar" className="aside-logo" />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                <h3>¿Quiénes somos?</h3>
+                <p>MiMercahogar es tu aliado para hacer tus compras de mercado fácil y rápido desde la comodidad de tu hogar. ¡Ahorra tiempo y dinero!</p>
+                <p>Perfil: Somos una distribuidora de productos de almacenes reconocidos. Proveemos lo que el cliente seleccione de varios almacenes en un solo envío.</p>
+                <p>Ubicación: Cl 77 # 100a-30</p>
+                <h4>Nuestros Proveedores:</h4>
+                <ul>
+                    <li>Exito</li>
+                    <li>Alkosto</li>
+                    <li>D1</li>
+                    <li>Ara</li>
+                    <li>Olímpica</li>
+                </ul>
+                <h4>Síguenos en nuestras redes sociales</h4>
+                <p>
+                    <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a> |
+                    <a href="#" target="_blank" rel="noopener noreferrer"> Twitter</a> |
+                    <a href="#" target="_blank" rel="noopener noreferrer"> Instagram</a>
+                </p>
+            </aside>
 
-        {/* Sección de Preguntas Frecuentes */}
-        <div className="necesitas-algo-mas">
-          <h2>¿Necesitas algo más?</h2>
-          {[
-            {
-              titulo: "¿Qué medios de pago aceptan?",
-              desc: "Tarjetas débito, crédito, Mastercard, Visa."
-            },
-            {
-              titulo: "¿Cómo puedo cancelar mi pedido?",
-              desc: "Si no ha sido preparado, puedes cancelarlo desde la app o llamando."
-            },
-            {
-              titulo: "Mi tarjeta ha sido rechazada",
-              desc: "Verifica si tu tarjeta está habilitada para compras online."
-            },
-            {
-              titulo: "Confirmación de compra",
-              desc: "Recibirás confirmación por correo o en la app."
-            }
-          ].map((faq, i) => (
-            <div className="dropdown" key={i}>
-              <button className="dropbtn">{faq.titulo}</button>
-              <div className="dropdown-content">
-                <p>{faq.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
+            {/* Contenido principal del Home */}
+            <main className="main-content">
+                <section className="offers-section">
+                    <h2>Ofertas y Promociones</h2>
+                    <div className="carousel-container">
+                        {carouselImages.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={`Oferta ${index + 1}`}
+                                className={`carousel-image ${index === currentSlide ? 'active' : ''}`}
+                            />
+                        ))}
+                    </div>
+                </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>WEBSITE LINKS</p>
-        <p>Aviso de Privacidad</p>
-        <p>Términos y condiciones</p>
-        <p>Sobre Nosotros</p>
-        <div>
-          <p>Servicio al cliente</p>
-          <p>Lunes a viernes 8:00 am a 6:00 pm - 5999-5998 o 800-654-786-767</p>
+                <section className="featured-products">
+                    <h2>Productos Destacados</h2>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+                        <div style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', textAlign: 'center', backgroundColor: '#fff', width: '250px' }}>
+                            <img src={arrozImg} alt="Arroz Flor Huila" style={{ maxWidth: '100%', height: 'auto', marginBottom: '10px' }} />
+                            <h3>Arroz FLOR HUILA (5000 gr)</h3>
+                            <p>$22.500</p>
+                            <button style={{ backgroundColor: '#ff8c00', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>Agregar al Carrito</button>
+                        </div>
+                        <div style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', textAlign: 'center', backgroundColor: '#fff', width: '250px' }}>
+                            <img src={chuletaImg} alt="Chuleta de Cerdo" style={{ maxWidth: '100%', height: 'auto', marginBottom: '10px' }} />
+                            <h3>Chuleta de Cerdo Económica</h3>
+                            <p>$13.800</p>
+                            <button style={{ backgroundColor: '#ff8c00', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>Agregar al Carrito</button>
+                        </div>
+                         <div style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', textAlign: 'center', backgroundColor: '#fff', width: '250px' }}>
+                            <img src={lecheImg} alt="Leche EXITO" style={{ maxWidth: '100%', height: 'auto', marginBottom: '10px' }} />
+                            <h3>Leche EXITO MARCA PROPIA Entera (5400 ml)</h3>
+                            <p>$16.670</p>
+                            <button style={{ backgroundColor: '#ff8c00', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Sección de "Necesitas algo más?" ... */}
+                <section className="faq-section">
+                    <h3>¿Necesitas algo más?</h3>
+                    <div className="faq-item">
+                        <button className="faq-question" onClick={() => toggleFaq('pago')}>
+                            ¿Qué métodos de pago aceptan?
+                            <span>{openFaq === 'pago' ? '▲' : '▼'}</span>
+                        </button>
+                        {openFaq === 'pago' && (
+                            <div className="faq-answer">
+                                <p>Aceptamos tarjetas de crédito y débito (Visa, MasterCard, American Express) y pagos en efectivo al momento de la entrega.</p>
+                            </div>
+                        )}
+                    </div>
+                    <div className="faq-item">
+                        <button className="faq-question" onClick={() => toggleFaq('cancelar')}>
+                            ¿Cómo puedo cancelar mi pedido?
+                            <span>{openFaq === 'cancelar' ? '▲' : '▼'}</span>
+                        </button>
+                        {openFaq === 'cancelar' && (
+                            <div className="faq-answer">
+                                <p>Si tu pedido no ha sido preparado, puedes cancelarlo desde la app o llamando a nuestra línea de atención al cliente.</p>
+                            </div>
+                        )}
+                    </div>
+                    <div className="faq-item">
+                        <button className="faq-question" onClick={() => toggleFaq('tarjeta')}>
+                            Mi tarjeta ha sido rechazada.
+                            <span>{openFaq === 'tarjeta' ? '▲' : '▼'}</span>
+                        </button>
+                        {openFaq === 'tarjeta' && (
+                            <div className="faq-answer">
+                                <p>Por favor, verifica los datos de tu tarjeta o contacta a tu banco. Asegúrate de que tu tarjeta está habilitada para compras online.</p>
+                            </div>
+                        )}
+                    </div>
+                     <div className="faq-item">
+                        <button className="faq-question" onClick={() => toggleFaq('confirmacion')}>
+                            Confirmación de compra
+                            <span>{openFaq === 'confirmacion' ? '▲' : '▼'}</span>
+                        </button>
+                        {openFaq === 'confirmacion' && (
+                            <div className="faq-answer">
+                                <p>Recibirás confirmación por correo electrónico o en la app una vez que tu compra sea procesada.</p>
+                            </div>
+                        )}
+                    </div>
+                </section>
+            </main>
         </div>
-        <div>
-          <p>¡Contáctanos!</p>
-          <p>Dylanorozco60@gmail.com</p>
-          <p>Mimercahogarmarket@hotmail.com</p>
-          <p>Mercasoluciones@gmail.com</p>
-        </div>
-      </footer>
-    </>
-  );
+    );
 }
 
 export default Home;
